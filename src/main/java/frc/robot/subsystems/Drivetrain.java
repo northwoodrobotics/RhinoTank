@@ -8,7 +8,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.VictorSP;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.TeleDrive;
@@ -17,10 +17,10 @@ import frc.robot.commands.TeleDrive;
  * An example subsystem. You can replace me with your own Subsystem.
  */
 public class Drivetrain extends Subsystem {
-  public VictorSP leftFront = new VictorSP(RobotMap.drivetrainLF);
-  public VictorSP rightFront = new VictorSP(RobotMap.drivetrainRF);
-  public VictorSP leftBack = new VictorSP(RobotMap.drivetrainLB);
-  public VictorSP rightBack = new VictorSP(RobotMap.drivetrainRB);
+  public WPI_VictorSPX leftFront = new WPI_VictorSPX(RobotMap.drivetrainLF);
+  public WPI_VictorSPX rightFront = new WPI_VictorSPX(RobotMap.drivetrainRF);
+  public WPI_VictorSPX leftBack = new WPI_VictorSPX(RobotMap.drivetrainLB);
+  public WPI_VictorSPX rightBack = new WPI_VictorSPX(RobotMap.drivetrainRB);
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
     leftFront.set(leftSpeed);
