@@ -7,7 +7,12 @@
 
 package frc.robot;
 
+import frc.robot.commands.TeleLift;
+import frc.robot.commands.TeleCollect;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,7 +20,36 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class OI {
   public static final XboxController xbox = new XboxController(0);
+  public static final JoystickButton driveLTrigger = new JoystickButton(xbox, 5);
+  public static final JoystickButton driveRTrigger = new JoystickButton(xbox, 6);
+  
+  public static final JoystickButton xboxA = new JoystickButton(xbox, 1);
+  public static final JoystickButton xboxB = new JoystickButton(xbox, 2);
 
+  public OI(Robot robot) {
+   driveLTrigger.whenPressed(new TeleLift(robot.elevator)); 
+    xboxA.whileHeld(new TeleCollect(robot.intake));
+  }
+
+  public static double getLeftTrigger() {
+    return xbox.getTriggerAxis(Hand.kLeft);
+  }
+
+  public static double getRightTrigger() {
+    return xbox.getTriggerAxis(Hand.kRight);
+  }
+  
+  public static double getAbutton() {
+    if(xbox.getAButton()) return 100.0;
+
+    return 0.0;
+  }
+
+  public static double getBbutton() {
+    if(xbox.getBButton()) return 100.0;
+
+    return 0.0;
+  }
   public static double deadband(double input) {
     double output = 0;
     double radius = 0.1;
@@ -26,7 +60,7 @@ public class OI {
     }
     return output;
 
-  };
+  }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.

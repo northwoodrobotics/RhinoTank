@@ -20,11 +20,15 @@ public class RobotMap {
   public static final int drivetrainRF = 2;
   public static final int drivetrainLB = 1;
   public static final int drivetrainRB = 3;
+  public static final int LifterMotor = 4;
+  public static final int IntakeMotor = 5;
 
   public static final boolean lfinverted = false;
   public static final boolean rfinverted = true;
   public static final boolean lbinverted = false;
   public static final boolean rbinverted = true;
+  public static final boolean LIFTER_INVERTED = true;
+  public static final boolean INTAKE_INVERTED = true;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

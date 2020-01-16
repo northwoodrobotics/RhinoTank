@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.TeleDrive;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
+
+import frc.robot.OI;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.XboxController;
@@ -27,7 +31,9 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class Robot extends TimedRobot {
   public final Drivetrain drivetrain = new Drivetrain();
-  public final OI m_oi = new OI();
+  public static OI m_oi;
+  public Elevator elevator = new Elevator();
+  public Intake intake = new Intake();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -38,6 +44,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    m_oi = new OI(this);
     m_chooser.setDefaultOption("Default Auto", new TeleDrive(drivetrain));
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
